@@ -232,10 +232,10 @@ PLUGIN_UPNPBRIDGE_STREAMOPTIONS_DESC
 	DA	<br>- For at tilfredsstille afspillerens anmodning om HTTP-søgning, bruges et mellemlager (cache). Det kan være i hukommelsen,
 	DA	rapporteret begrænset eller uendeligt, eller på disk (fallback i hukommelsen ved livestreaming eller brug af flow)
 	DA	<br>- Nogle afspillere understøtter afspilning uden pause (gapless) og hopper dermed automatisk til næste nummer i afspilningslisten.
-	DA	Dette registreres automatisk, men du kan gennemtvinge at det er deaktiveret. Andre (f.eks. Bose) er helt itu og sidder fast mod sporets ende.
-	DA	Brug 'force' til at tvinge dem til at flytte til næste spor.
-	DA	<br>- Med store buffere kan der meget hurtigt anmodes om næste spor, og nogle streamingtjenester kan muligvis lukke forbindelsen.
-	DA	Anmodning kan forsinkes op til &ltN&gt sekunder før slutningen af ​​det aktuelle spor. Indstil til 0 for at anmode om det med det samme
+	DA	Dette registreres automatisk, men du kan gennemtvinge at det er deaktiveret. Andre (f.eks. Bose) er helt itu og sidder fast mod nummerets afslutning.
+	DA	Brug 'force' til at tvinge dem til at flytte til næste nummer.
+	DA	<br>- Med store buffere kan der meget hurtigt anmodes om næste nummer, og nogle streamingtjenester kan muligvis lukke forbindelsen.
+	DA	Anmodning kan forsinkes op til &ltN&gt sekunder før slutningen af ​​det aktuelle nummer. Indstil til 0 for at anmode om det med det samme
 	DA	<br>- Hvis din afspiller ikke genoptager, hvor den blev sat på pause, benyt denne til at tvinge LMS til at genstarte fra den gemte position
 	DA	<br>- Nogle afspillere nægter at sætte livestreams på pause (webradioer). Brug dette til at stoppe, når LMS anmoder om en pause
 	DA	<br>se Brugervejledningen for flere detaljer (virkelig!).
@@ -400,7 +400,7 @@ PLUGIN_UPNPBRIDGE_ENCODEPARAMS
 PLUGIN_UPNPBRIDGE_ENCODEPARAMS_DESC
 	DA	Din bro kan enten blot sende audio data til afspilleren (med mindre ændringer) eller udføre en fuld omkodning, som
 	DA	forbedrer kompatibiliteten ved at sende et kontrolleret dataformat og tillade replay gain samt fading ind og ud. Det er
-	DA	også muligt at sende lyd i en kontinuerlig strøm af data i stedet for et spor ad gangen for at muliggøre ægte gapless
+	DA	også muligt at sende lyd i en kontinuerlig strøm af data i stedet for et nummer ad gangen for at muliggøre ægte gapless
 	DA	afspilning og krydsfading. Se brugervejledningen for flere detaljer
 	DA	<br><i>- Transkodning:</i> format sendt til afspilleren. Når tom eller indstillet til 'none', sendes lyden uændret videre til
 	DA	afspilleren. Brug 'silent' for at sende lydløse mp3-rammer og brug kun afspilleren til visning (oprethold ikke synkronisering)
@@ -416,7 +416,7 @@ PLUGIN_UPNPBRIDGE_ENCODEPARAMS_DESC
 	DA	<br><i>- MP3/AAC bitrate:</i> i mp3/aac-tilstand, indstil bitrate
 	DA	<br><i>- Resample rate:</i> resample rate for omkodning. Når "No higher" er indstillet, vil resampling kun ske, hvis hastigheden er over den
 	DA	indstillede værdi, undtagen i flowtilstand, hvor hastigheden skal være fast (44100 som standard). Når den efterlades tom, udføres ingen resampling.
-	DA	<br><i>- Sample størrelse:</i> sample størrelse til omkodning. Når den efterlades tom, bruges original sample størrelse for spor, undtagen i flow
+	DA	<br><i>- Sample størrelse:</i> sample størrelse til omkodning. Når den efterlades tom, bruges original sample størrelse for nummeret, undtagen i flow
 	DA	hvor sample størrelsen skal fastsættes (16 bit som standard)
 	EN	The bridge can either simply passthrough audio data to the player (with minor alteration) or do a full transcoding which
 	EN	improves compatibility by sending controlled format and allows replay gain as well as fading in and out. It's also 
@@ -530,7 +530,7 @@ PLUGIN_UPNPBRIDGE_SENDMETADATA
 	EN	Send LMS metadata to player
 	
 PLUGIN_UPNPBRIDGE_SENDCOVERART
-	DA	Inkludér cover art
+	DA	Inkludér cover grafik
 	EN	Include cover art
 	
 PLUGIN_UPNPBRIDGE_COVERART
@@ -546,7 +546,7 @@ PLUGIN_UPNPBRIDGE_ICYTEXT
 
 PLUGIN_UPNPBRIDGE_SENDMETADATA_DESC
 	DA	- Når en UPnP afspiller har et display, kan LMS sende metadata (titel, kunstner, album) til den.
-	DA	<br>- Du kan fremtvinge opløsning af grafik ved hjælp af syntaks &ltX&gtx&ltY&gt. Du skal bruge LMS til proxy artwork, ikke
+	DA	<br>- Du kan fremtvinge opløsning af grafik ved hjælp af syntaks &ltX&gtx&ltY&gt. Du skal bruge LMS til proxy grafik, ikke
 	DA	mysqueezebox.com, for at det virker (lad det stå tomt som standard)
 	DA	<br>- ICY metadata er en mulighed for at sende live titel, når du spiller webradio. Brug 'kun tekst' med afspillere, der ikke understøtter grafik i ICY.
 	DA	Dette <b>VIRKER IKKE</b>, hvis du har indstillet en adgangskode til LMS-kommandoadgang
@@ -557,21 +557,21 @@ PLUGIN_UPNPBRIDGE_SENDMETADATA_DESC
 	EN	This <b>DOES NOT</b> work if you have set a password for LMS command access
 
 PLUGIN_UPNPBRIDGE_VOLUMEMGMT
-	DA	Volumenstyring for afspiller
+	DA	Lydsniveautyring for afspiller
 	EN	Player volume management
 	
 PLUGIN_UPNPBRIDGE_VOLUMEMGMT_DESC
-	DA	Definerer, hvordan LMS volumenkommandoer sendes til afspilleren. Normale værdier er 0..100, men nogle afspillere har et lavere maksimum,
-	DA	der kan indstilles her. Dette afsnit styrer også, hvordan LMS volumenkommandoer sendes til og feedback fra afspilleren.
+	DA	Definerer, hvordan LMS lydniveaukommandoer sendes til afspilleren. Normale værdier er 0..100, men nogle afspillere har et lavere maksimum,
+	DA	der kan indstilles her. Dette afsnit styrer også, hvordan LMS lydniveaukommandoer sendes til og feedback fra afspilleren.
 	EN	Defines how LMS volume commands are sent to player. Normal values are 0..100 but some players have a lower maximum that can be set 
 	EN	here. This section also controls how LMS volume commands are sent to and feedback from player. 
 
 PLUGIN_UPNPBRIDGE_VOLUMEONPLAY
-	DA	LMS volumenændringer
+	DA	LMS lydniveauændringer
 	EN	LMS volume changes
 	
 PLUGIN_UPNPBRIDGE_MAXVOLUME
-	DA	Maksimum volumen
+	DA	Maksimum lydniveau
 	EN	Maximum volume
 	
 PLUGIN_UPNPBRIDGE_VOLUMEFEEDBACK
